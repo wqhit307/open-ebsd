@@ -1,11 +1,8 @@
 #--------------------------------#
-
 # Mods for Apple to use GCC 4.2  #
-
 #--------------------------------#
-
-SET(CMAKE_CXX_COMPILER g++-4.2)
-SET(VTK_DIR /vtk)
+#SET(CMAKE_CXX_COMPILER g++-4.2)
+#SET(VTK_DIR /vtk)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
 
@@ -113,10 +110,4 @@ SET_TARGET_PROPERTIES(p PROPERTIES
 
 INSTALL(DIRECTORY python 
 		DESTINATION ${CMAKE_BINARY_DIR})
-
-
-
-
-
-
 
