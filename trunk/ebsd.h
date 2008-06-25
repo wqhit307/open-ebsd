@@ -30,7 +30,9 @@
 //#include <omp.h>
 #include <assert.h>
 
+#ifndef isnan
 #define isnan(x) ((x) != (x))
+#endif
 
 //--------------------------------------------------
 // Include Newmat Matrix Library

@@ -4,8 +4,8 @@
 
 #--------------------------------#
 
-#SET(CMAKE_CXX_COMPILER g++-4.2)
-#SET(VTK_DIR /vtk)
+SET(CMAKE_CXX_COMPILER g++-4.2)
+SET(VTK_DIR /vtk)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
 
@@ -81,10 +81,9 @@ SET_TARGET_PROPERTIES(ebsd PROPERTIES
 			   PREFIX ""
 			   COMPILE_FLAGS -DPYTHON_BINDINGS)
 
-TARGET_LINK_LIBRARIES(ebsd C:/Python25/libs/python25.lib)
+TARGET_LINK_LIBRARIES(ebsd ${PYTHON_LIBRARY})
 #MESSAGE(${PYTHON_LIBRARY})
 
-SET(PYTHON_LIB python25)
 
 # Make standalone executable
 #------------------------------------------#
@@ -112,7 +111,8 @@ ADD_EXECUTABLE(p ebsd.cpp
 SET_TARGET_PROPERTIES(p PROPERTIES
 			COMPILE_FLAGS -fopenmp)
 
-
+INSTALL(DIRECTORY python 
+		DESTINATION ${CMAKE_BINARY_DIR})
 
 
 
