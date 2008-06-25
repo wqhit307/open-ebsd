@@ -26,7 +26,6 @@ from enthought.mayavi.modules.outline import Outline
 from enthought.mayavi.modules.image_actor import ImageActor 
 from enthought.mayavi.modules.grid_plane import GridPlane 
 from enthought.mayavi.modules.scalar_cut_plane import ScalarCutPlane 
-#from enthought.mayavi.filters.decimatepro import DecimatePro
 from enthought.pyface.tvtk.picker import Picker, PickHandler, PickedData, get_last_input
 
 from ebsd import *
@@ -183,40 +182,7 @@ class ebsd_interface(HasTraits):
 
  
  					 ))
- 	
- 	#view_grain_list = View(Item(name='grain_list',
- 	#							editor=TableEditor()))
-
-#	view_plot2d = View(
-#					   Chaco2PlotItem('volume_hist_x', 'volume_hist',
-#						   # Basic axis and label properties
-#						   show_label=False,
-#						   resizable=True,
-#						   orientation='h', 
-#						   title = 'Volume Histogram',
-#						   x_label = 'Volume',
-#						   y_label = 'Frequency',
-#						   
-#						   # Plot properties
-#						   color = 'red',
-#						   bgcolor = 'white',
-#														
-#						   # Border, padding properties
-#						   border_visible=False,
-#						   border_width=1,
-#						   padding_bg_color = 'lightgray'),
-#						   
-#					   Group(
-#					 		Item(name="hist_min",
-# 					 			 label='Min'),
-# 					 		Item(name="hist_max",
-# 					 			 label='Max'),
-# 				 			 Item(name="hist_num_bins",
-# 					 			 label='Bins'),
-# 					 		label="Histogram Options",
-# 					 		show_border=True),
-# 					 	)
-
+ 					 
 	######################################################
 	## Setup Mayavi										##
 	######################################################
@@ -257,21 +223,7 @@ class ebsd_interface(HasTraits):
 			
 		self.grain_map = self.dataset.grain_mapper()
 		
-#		self.update_graph()
 		self.dataset_vis()
-		
-#	def update_graph(self):
-#		print self.num_grains
-#		if self.num_grains > 0:
-#			grain_list = self.dataset.grains()	
-#			self.volume_list = grain_list['volume']
-#			self.num_adj_list = grain_list['num_adj_grains']
-#			
-#			h = histogram(self.num_adj_list,self.hist_num_bins,(self.hist_min,self.hist_max))
-#			
-#			self.volume_hist = h[0]
-#			self.volume_hist_x = h[1]
-#						
 	
 	######################################################
 	## Plane visibility handlers						##
@@ -388,15 +340,9 @@ class ebsd_interface(HasTraits):
 		dims = self.dataset.dims
 		steps = self.dataset.steps	
 				
-#		mayavi.engine.current_scene.scene.axes.origin = [dims[0]*steps[0]*0.5,dims[1]*steps[1]*0.5,dims[2]*steps[2]*0.5]
-#		mayavi.engine.current_scene.scene.camera.focal_point = [dims[0]*steps[0]*0.5,dims[1]*steps[1]*0.5,dims[2]*steps[2]*0.5]
-
-
 		self.gx_position = int(dims[0]*0.5)		
 		self.gy_position = int(dims[1]*0.5)		
 		self.gz_position = int(dims[2]*0.5)		
-
-		print "G:", self.gx_position, self.gy_position, self.gz_position
 	
 		self.gz.grid_plane.axis = 'z'
 		self.gz.actor.mapper.scalar_visibility = True	
@@ -418,13 +364,7 @@ class ebsd_interface(HasTraits):
 		mayavi.engine.current_scene.scene.interactor.add_observer("KeyPressEvent",self.handle_key)
 
 		if first_view:
-			self.volume_scene.scene.isometric_view()
-	
-#		self.gx.configure_traits()
-
-#		s.actor.property.color = (1, 0, 0)
-#		self.scene.background = (1, 1, 1)
-	
+			self.volume_scene.scene.isometric_view()	
 		
 	def rf_vis(self):
 		mayavi = self.get_mayavi()
@@ -488,9 +428,6 @@ class ebsd_interface(HasTraits):
 			
 			c = self.dataset.grain_representation(self.grain_hover,self.display_mode)										
 			surf.actor.property.color = c
-#			surf.actor.property.ambient = 1.0
-#			surf.actor.property.diffuse = 0.5
-#			surf.actor.property.specular = 0.0
 
 			self.grain_surfaces[grain] = surf
 
