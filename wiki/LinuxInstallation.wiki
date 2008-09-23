@@ -1,0 +1,28 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+-Authenticate as root
+
+Install cmake
+{{{
+sudo apt-get install cmake
+}}}
+
+Install python modules 
+{{{
+sudo apt-get install python2.5-dev python-numpy python-scipy python-setuptools python-vtk python-wxgtk2.8 python-pyrex freeglut3-dev libxtst-dev
+}}}
+
+Install Enthought ETS
+
+Different easy install eggs are available for different Linux distributions. The example below installs the egg for Ubuntu 'Gusty Gibbon'. You can see the different eggs [http://code.enthought.com/enstaller/eggs/ here], and will need to change 'ubuntu/gusty' depending on the distribution you are using. 
+
+{{{
+sudo easy_install -f http://code.enthought.com/enstaller/eggs/ubuntu/gutsy --prefix=/usr/local ets
+}}}
