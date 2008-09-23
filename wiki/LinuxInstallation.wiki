@@ -2,9 +2,9 @@
 
 Installation on a Linux system is relatively straightforward. The instructions below will guide you through installing all the required packages and compiling the source on a Debian-based system (eg Ubuntu).
 
-===Install cmake===
+===Install cmake, subversion (cvs) and newest compiler suite===
 {{{
-sudo apt-get install cmake
+sudo apt-get install cmake subversion gcc
 }}}
 
 ===Install python modules, tk, tcl===
@@ -19,7 +19,11 @@ sudo easy_install -f http://code.enthought.com/enstaller/eggs/ubuntu/gutsy --pre
 }}}
 
 ===Install VTK===
-You need to build VTK from source to get the right header files, so it is not possible to use apt. You can download and build VTK using CMake
+{{{
+sudo apt-get install libvtk-dev
+}}}
+
+You need to build VTK from source to get the right header files and python bindings, so it is not possible to use apt. You can download and build VTK using CMake
 
 {{{
 mkdir ~/install
@@ -60,3 +64,12 @@ which will take some time. To install type
 {{{
 sudo make install
 }}} 
+
+===Checkout and compile open-ebsd source===
+mkdir ~/open-ebsd
+cd ~/open-ebsd
+svn checkout http://open-ebsd.googlecode.com/svn/trunk/ open-ebsd-read-only
+mkdir build
+cd build
+cmake ../open-ebsd-read-only
+make
