@@ -34,7 +34,6 @@ vtkFiltering
 #------------------------------------------#
 
 ADD_SUBDIRECTORY(newmat10)
-ADD_SUBDIRECTORY(prob)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/newmat10)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/prob)
