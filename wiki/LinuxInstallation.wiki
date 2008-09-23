@@ -1,33 +1,25 @@
-#summary One-sentence summary of this page.
+#summary Step-by-step guide to installation on Linux systems
 
-= Introduction =
+Installation on a Linux system is relatively straightforward. The instructions below will guide you through installing all the required packages and compiling the source on a Debian-based system (eg Ubuntu).
 
-Add your content here.
-
-
-= Details =
-
--Authenticate as root
-
-Install cmake
+===Install cmake===
 {{{
 sudo apt-get install cmake
 }}}
 
-Install python modules, tk, tcl
+===Install python modules, tk, tcl===
 {{{
 sudo apt-get install python2.5-dev python-numpy python-scipy python-setuptools python-vtk python-wxgtk2.8 python-pyrex freeglut3-dev libxtst-dev tk-dev tcl-dev
 }}}
 
-Install Enthought ETS
-
+===Install Enthought ETS===
 Different easy install eggs are available for different Linux distributions. The example below installs the egg for Ubuntu 'Gusty Gibbon'. You can see the different eggs [http://code.enthought.com/enstaller/eggs/ here], and will need to change 'ubuntu/gusty' depending on the distribution you are using. 
 {{{
 sudo easy_install -f http://code.enthought.com/enstaller/eggs/ubuntu/gutsy --prefix=/usr/local ets
 }}}
 
-
-Install VTK
+===Install VTK===
+You need to build VTK from source to get the right header files, so it is not possible to use apt. You can download and build VTK using CMake
 
 {{{
 mkdir ~/install
