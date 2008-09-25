@@ -1,6 +1,6 @@
 #summary Step-by-step guide to installation on Linux systems
 
-Installation on a Linux system is relatively straightforward. The instructions below will guide you through installing all the required packages and compiling the source on a Debian-based system (eg Ubuntu).
+Installation on a Linux system is relatively straightforward. The instructions below will guide you through installing all the required packages and compiling the source on a Debian-based system. These instructions have been tested under Ubuntu 'Hardy Heron' 8.04
 
 ===Install cmake, subversion (cvs) and newest compiler suite===
 {{{
@@ -9,10 +9,15 @@ sudo apt-get install cmake subversion gcc
 
 ===Install python modules, tk, tcl===
 {{{
-sudo apt-get install python2.5-dev python-numpy python-scipy python-setuptools python-vtk python-wxgtk2.8 python-pyrex freeglut3-dev libxtst-dev tk-dev tcl-dev
+sudo apt-get install python2.5-dev python-numpy python-scipy python-setuptools python-vtk python-wxgtk2.8 python-pyrex freeglut3-dev libxtst-dev swig tk-dev tcl-dev
 }}}
 
 ===Install Enthought ETS===
+(make sure ETS 2.7.1 isn't installed)
+_new instructions_
+sudo easy_install ets[nonets]
+
+_old instructions_
 Different easy install eggs are available for different Linux distributions. The example below installs the egg for Ubuntu 'Gusty Gibbon'. You can see the different eggs [http://code.enthought.com/enstaller/eggs/ here], and will need to change 'ubuntu/gusty' depending on the distribution you are using. 
 {{{
 sudo easy_install -f http://code.enthought.com/enstaller/eggs/ubuntu/gutsy --prefix=/usr/local ets
@@ -20,9 +25,10 @@ sudo easy_install -f http://code.enthought.com/enstaller/eggs/ubuntu/gutsy --pre
 
 ===Install VTK===
 {{{
-sudo apt-get install libvtk-dev
+sudo apt-get install libvtk5 libvtk5-dev
 }}}
 
+_old instructions_
 You need to build VTK from source to get the right header files and python bindings, so it is not possible to use apt. You can download and build VTK using CMake
 
 {{{
