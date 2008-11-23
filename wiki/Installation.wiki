@@ -1,4 +1,4 @@
-#summary Guidelines for installation
+#summary Guidelines for installation (not up-to-date)
 
 = Introduction =
 Currently the only way to use OpenEBSD is to compile from source. Instructions for obtaining the source from CVS are given under the 'Source Tab'.
