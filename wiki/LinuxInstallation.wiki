@@ -1,4 +1,4 @@
-#summary Step-by-step guide to installation on Linux systems
+#summary Step-by-step guide to installation on Linux systems (out of date)
 
 Installation on a Linux system is relatively straightforward. The instructions below will guide you through installing all the required packages and compiling the source on a Debian-based system. These instructions have been tested under Ubuntu 'Hardy Heron' 8.04
 
