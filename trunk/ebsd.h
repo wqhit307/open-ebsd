@@ -29,8 +29,11 @@
 #include <float.h>
 #include <fcntl.h>
 #include <time.h>
-#include <omp.h>
 #include <assert.h>
+
+#ifndef COMPILE_WITH_OMP
+#include <omp.h>
+#endif
 
 #ifndef isnan
 #define isnan(x) ((x) != (x))
