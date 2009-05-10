@@ -1,9 +1,3 @@
-#--------------------------------#
-# Mods for Apple to use GCC 4.2  #
-#--------------------------------#
-#SET(CMAKE_CXX_COMPILER g++-4.2)
-#SET(VTK_DIR /vtk)
-
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2)
 
 if(COMMAND cmake_policy)
@@ -13,35 +7,13 @@ endif(COMMAND cmake_policy)
 PROJECT(EBSD)
 
 INCLUDE(FindPkgConfig)
-#pkg_check_modules (GTKREQ gtkglext-1.0)
-#LINK_LIBRARIES(${GTKREQ_LIBRARIES})
-#INCLUDE_DIRECTORIES(${GTKREQ_INCLUDE_DIRS})
-#INCLUDE("CMake/FindGTK2.cmake")
-#LINK_LIBRARIES(${GTK2_LIBRARIES})
-#INCLUDE_DIRECTORIES(${GTK2_INCLUDE_DIRS})
 
 FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE})
 
-INCLUDE(FindwxWidgets)
-
-#FIND_PACKAGE(wxWidgets COMPONENTS
-#				string
-#				bitmap
-#				image
-#				icon
-#				menu
-#				gdicmn
-#				font
-#				colour
-#				settings
-#				statusbr
-#				toolbar
-#				treectrl
-#				sizer
-#				frame)
-
 # The following allows you to access wxGLCanvas for GTK
+#------------------------------------------#
+
 IF(WIN32)
   SET(GUI_EXECUTABLE WIN32)
 ELSE(WIN32)
@@ -69,7 +41,17 @@ ELSE(WIN32)
   ENDIF(APPLE)
 ENDIF(WIN32)
 
+
+# Include wxWidgets
+#------------------------------------------#
+
 FIND_PACKAGE(wxWidgets COMPONENTS base core adv ${WXGLCANVASLIBS})
+
+# wxWidgets include directory
+include_directories(${wxWidgets_INCLUDE_DIRS})
+ 
+# add wxWidgets definitions
+add_definitions(${wxWidgets_DEFINITIONS})
 
 IF(wxWidgets_FOUND)
   INCLUDE( ${wxWidgets_USE_FILE} )
@@ -77,6 +59,7 @@ ENDIF(wxWidgets_FOUND)
 
 LINK_LIBRARIES(${wxWidgets_LIBRARIES})
 INCLUDE(${wxWidgets_USE_FILE})
+
 
 # Include VTK
 #------------------------------------------#
@@ -97,6 +80,7 @@ vtkFiltering
 vtkWidgets
 )
 
+
 # Build Newmat
 #------------------------------------------#
 
@@ -110,10 +94,12 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/newmat10)
 LINK_LIBRARIES(newmat) 
 #LINK_LIBRARIES(prob) 
 
+
 # Include Python and NumPy
 #------------------------------------------#
 #INCLUDE(FindPythonLibs)
 #INCLUDE(FindPythonInterp)
+
 
 # Make Python Extention
 #------------------------------------------#
