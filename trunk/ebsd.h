@@ -31,7 +31,7 @@
 #include <time.h>
 #include <assert.h>
 
-#ifndef COMPILE_WITH_OMP
+#ifdef COMPILE_WITH_OMP
 #include <omp.h>
 #endif
 
