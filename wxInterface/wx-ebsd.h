@@ -5,8 +5,8 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef __wx-ebsd__
-#define __wx-ebsd__
+#ifndef __WXEBSD__
+#define __WXEBSD__
 
 #include <wx/statusbr.h>
 #include <wx/gdicmn.h>
