@@ -143,7 +143,7 @@ int Dataset::segment(float min_angle)
 int Dataset::reconstruct_grains()
 {
 	Point *d, *nn;
-	int i, j, k, l, v,
+	int i, j,
 		stack_top = 0, 
 		cur_grain = 0,
 		g_top = 0;
@@ -155,7 +155,6 @@ int Dataset::reconstruct_grains()
 
 	bool *grain_on_edge;
 
-	Grain *g;
 	GrainList **grain_ptrs = NULL;
 
 	int nn_offset_edge[NUM_NN+1];
@@ -302,16 +301,13 @@ int Dataset::adjacency_list()
 
 	Point *d, *nn;
 	int i, j, k, l, 
-		index, num_adjacent_grains, diff_neighbours;
-	int *grain_num, *grain_vol;
+		diff_neighbours;
 	
 	int nn_offset_edge[NUM_NN+1],
 		*nn_offset, num_nn;
 
-	bool in_list;
 	AdjGrain *adj;
 
-	GrainList **grain_ptrs;
 	GrainList *list;
 	Grain *g;
 

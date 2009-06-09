@@ -17,7 +17,8 @@
 	
 */
 
-#define _EBSDH 
+#ifndef _EBSDH_
+#define _EBSDH_ 
 
 //--------------------------------------------------
 // Standard Headers				 	
@@ -338,3 +339,5 @@ int choose_grain(int grain,int g1,int g2);
 // Suppress Visual C++ Warnings
 //--------------------------------------------------
 #pragma warning( disable : 4996 4244 4305 )
+
+#endif

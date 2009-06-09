@@ -94,7 +94,6 @@ int Dataset::read_channel5(const char name[])
 int Dataset::read_raw(const char name[])
 {
 	FILE *fi;
-	int i;
 	char buff[100];
 	if (name !=NULL && (fi = fopen(name,"rb")) != NULL) {
 
@@ -135,7 +134,6 @@ int Dataset::read_raw(const char name[])
 int Dataset::write_raw(const char name[])
 {
 	FILE *fo;
-	int i;
 	
 	if (name!=NULL && (fo = fopen(name,"wb")) != NULL) {
 		fprintf(fo,"%s\n",MAGIC);
@@ -252,7 +250,6 @@ int Dataset::write_ppm(const char name[], int mode) {
 
 	FILE *fo;
 	char n[100];
-	unsigned char buff[3];
 	Point *d;
 	int i, z;
 	char c[1];

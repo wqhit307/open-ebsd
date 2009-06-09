@@ -3,6 +3,9 @@
 	\brief Define functions and variables for visualising the dataset
 */
 
+#ifndef _VISUALISATIONH_
+#define _VISUALISATIONH_
+
 /// Represnts a coordinate point
 class XYZ {
 	public:
@@ -348,3 +351,5 @@ static int triTable[256][16] =
 {0, 9, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
 {0, 3, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
 {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
+
+#endif _VISUALISATIONH_

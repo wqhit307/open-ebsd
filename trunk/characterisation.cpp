@@ -389,7 +389,6 @@ int polygonise(Gridcell grid, int grain, Triangle *triangles)
 	int i, ntriang;
 	int cubeindex;
 	XYZ vertlist[12];
-	int grainlist[12];
 
 	/*
 		Determine the index into the edge table which

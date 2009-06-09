@@ -12,7 +12,7 @@
 vtkObject* Dataset::vtk_3d_dataset(int mode){
 
 	float *e;
-	int x,y,z,i;	
+	int i;	
 		
 	if (vtk_dataset!=NULL) {
 		vtk_dataset->Delete();
@@ -234,7 +234,7 @@ vtkObject* Dataset::rf_space()
 vtkObject* Dataset::grain_surface(int grain)
 {
 
-	int i,j,k,
+	int i,j,
 		index,
 		point_count,
 		num_vertices,
@@ -310,7 +310,6 @@ vtkLookupTable* Dataset::build_lut()
 	
 	int i;
 	float *r;
-	double f[5], *ff;
 	vtkLookupTable* lut = vtkLookupTable::New(); 
 	lut->SetNumberOfColors(num_grains+1);
 	lut->SetTableRange(0,num_grains);
@@ -329,11 +328,10 @@ vtkLookupTable* Dataset::build_lut()
 /// Create a VTK surface of a grain coloured by the orientation of a its neighbours 
 vtkPolyData* Dataset::adj_grain_surface(int grain)
 {
-	int index, i,j,k, exists;
+	int i,j,k;
 	int x,y,z;
 	int num_quads = 0, new_quads = 0, buffer_count = 1;
 	int num_vertices = 0;
-	int num_adjacent;
 
 	Quad *quads;
 	XYZ p;

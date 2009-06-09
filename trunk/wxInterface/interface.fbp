@@ -7,7 +7,7 @@
         <property name="disconnect_events">1</property>
         <property name="encoding">UTF-8</property>
         <property name="event_generation">connect</property>
-        <property name="file">wx-ebsd</property>
+        <property name="file">wxebsd</property>
         <property name="first_id">1000</property>
         <property name="help_provider">none</property>
         <property name="internationalize">0</property>
@@ -19,7 +19,7 @@
         <property name="use_enum">0</property>
         <property name="use_microsoft_bom">0</property>
         <object class="Frame" expanded="1">
-            <property name="bg"></property>
+            <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
             <property name="center"></property>
             <property name="context_help"></property>
             <property name="enabled">1</property>
@@ -1545,7 +1545,7 @@
                 </object>
             </object>
             <object class="wxToolBar" expanded="0">
-                <property name="bg"></property>
+                <property name="bg">wxSYS_COLOUR_MENU</property>
                 <property name="bitmapsize"></property>
                 <property name="context_help"></property>
                 <property name="enabled">1</property>
@@ -1591,48 +1591,6 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="tool" expanded="1">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">Open CSV</property>
-                    <property name="name">m_tool1</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
-                <object class="tool" expanded="1">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool2</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
-                <object class="tool" expanded="1">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool3</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
             </object>
         </object>
         <object class="Dialog" expanded="0">

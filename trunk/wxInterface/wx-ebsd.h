@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Apr 21 2008)
+// C++ code generated with wxFormBuilder (version Apr 16 2008)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef __WXEBSD__
-#define __WXEBSD__
+#ifndef __wxebsd__
+#define __wxebsd__
 
 #include <wx/statusbr.h>
 #include <wx/gdicmn.h>
@@ -248,4 +248,4 @@ class alignmentFrameUI : public wxFrame
 	
 };
 
-#endif //__wx-ebsd__
+#endif //__wxebsd__
