@@ -3,6 +3,9 @@
 	\brief Declarations used for symmetry calculations
 */
 
+#ifndef _SYMMETRYH_
+#define _SYMMETRYH_
+
 #define SYM_NUM 24
 #define PI		3.14159265358979323846264338327950288419716939937510
 
@@ -57,3 +60,5 @@ static QUAT Sq[24] = {
 	{-ist2,0,ist2,0},
 	
 };
+
+#endif

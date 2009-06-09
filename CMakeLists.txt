@@ -53,12 +53,13 @@ include_directories(${wxWidgets_INCLUDE_DIRS})
 # add wxWidgets definitions
 add_definitions(${wxWidgets_DEFINITIONS})
 
-IF(wxWidgets_FOUND)
-  INCLUDE( ${wxWidgets_USE_FILE} )
-ENDIF(wxWidgets_FOUND)
 
-LINK_LIBRARIES(${wxWidgets_LIBRARIES})
-INCLUDE(${wxWidgets_USE_FILE})
+#IF(wxWidgets_FOUND)
+	INCLUDE( ${wxWidgets_USE_FILE} )
+	LINK_LIBRARIES(${wxWidgets_LIBRARIES})
+#ENDIF(wxWidgets_FOUND)
+
+
 
 
 # Include VTK
@@ -146,7 +147,7 @@ LINK_LIBRARIES(newmat)
 
 # Make standalone executable
 #------------------------------------------#
-ADD_EXECUTABLE(p ebsd.cpp
+ADD_EXECUTABLE(p 		 ebsd.cpp
 				 ebsd.h
 				 symmetry.h
 				 visualisation.h
@@ -167,14 +168,19 @@ ADD_EXECUTABLE(p ebsd.cpp
 				 wxInterface/wxVTKRenderWindowInteractor.cpp
 				 wxInterface/wxVTKRenderWindowInteractor.h
 				 
-				 wxInterface/vtkFrame.cpp
+				 wxInterface/interface.h
+				 wxInterface/interface.cpp
+					
 				 wxInterface/dialogs.cpp
 				 wxInterface/alignmentFrame.cpp
 				
 				 wxInterface/vtk3DEBSDWindow.cpp
 				 wxInterface/vtk2DEBSDWindow.cpp
 				 
-				 wxInterface/wx-ebsd.cpp
+				 wxInterface/wxebsd.cpp
+				 wxInterface/wxebsd.h
+
+				 wxInterface/vtkFrame.cpp
 				 )
 
 #TARGET_LINK_LIBRARIES(p gtkglext-1.0)
@@ -185,7 +191,8 @@ ADD_EXECUTABLE(p ebsd.cpp
 MESSAGE("${wxWidgets_DEFINITIONS}")
 
 SET_TARGET_PROPERTIES(p PROPERTIES
-			COMPILE_FLAGS "${wxWidgets_CXX_FLAGS} ${wxWidgets_DEFINITIONS}")
+			COMPILE_FLAGS "${wxWidgets_CXX_FLAGS} ${wxWidgets_DEFINITIONS}"
+			LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 
 
 # Make Documentation

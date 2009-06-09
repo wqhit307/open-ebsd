@@ -158,7 +158,7 @@ void TestTypeSP();                             // test SP
 void TestTypeKP();                             // test KP
 void TestTypeOrder();                          // test >=
 
-
+/*
 int main()
 {
    Real* s1; Real* s2; Real* s3; Real* s4;
@@ -244,7 +244,7 @@ int main()
 #endif
    return 0;
 }
-
+*/
 
 
 

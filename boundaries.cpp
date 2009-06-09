@@ -28,11 +28,9 @@ vtkLookupTable* Dataset::boundary_lut()
 /// Draw the entire boundary network, mapping disorientations
 vtkPolyData* Dataset::boundary_network()
 {
-	int index, i,j,k = 0, exists;
-	int x,y,z;
+	int i,j,k = 0;
 	int num_quads = 0, new_quads = 0, buffer_count = 1;
 	int num_vertices = 0;
-	int num_adjacent;
 	
 	AdjGrain* adj_grain;
 	Quad *quads;

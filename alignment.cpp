@@ -85,7 +85,7 @@ int Dataset::init_alignment()
 int Dataset::calculate_offsets()
 {
 	
-	int i, y, z, min_x, max_x, min_y, max_y;
+	int z, min_x, max_x, min_y, max_y;
 	int completed = 0;
 	double *cc_z;
 	int write_correlation = true;
@@ -103,13 +103,13 @@ int Dataset::calculate_offsets()
 		
 		allow_py_threading;
 		double cc_min;
-		int i, x, y, yprime, xprime, dx, dy, dx_n, dy_n, dx_o, dy_o;
+		int dx, dy, dx_n, dy_n, dx_o, dy_o;
 		Point *s1, *s2;
 		
 		bool cc_assigned[MAX_SHIFT*2+1][MAX_SHIFT*2+1], finished;
 		double cc[MAX_SHIFT*2+1][MAX_SHIFT*2+1];
 
-		char n[100], buff[3]; 
+		char n[100];
 		FILE *fo;
 
 		s1 = data + last_unmarked*dz;
@@ -205,7 +205,8 @@ int Dataset::calculate_offsets()
 
 	}
 			
-		#pragma flush(completed)		#pragma omp atomic	
+		#pragma omp flush(completed)		
+		#pragma omp atomic	
 		completed++;
 		#pragma omp critial(display)
 		
@@ -264,8 +265,6 @@ int Dataset::realign_slices()
 		min_x = 0, max_x = 0, 
 		min_y = 0, max_y = 0,
 		tx_n, ty_n;
-	
-	double *cc_z;
 	
 	bool write_correlation = true,
 		 completed = false;

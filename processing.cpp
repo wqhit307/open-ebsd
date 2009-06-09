@@ -9,7 +9,7 @@
 int Dataset::dilate_grains()
 {
 	Point *d, *nn;
-	int i,j,k,l, tm, v, index, assigned = 0, grain_assigned = 0; 
+	int i,l,k, v, assigned = 0, grain_assigned = 0; 
 	
 	int x = 1,
 		y = tx,
@@ -17,13 +17,12 @@ int Dataset::dilate_grains()
 	
 	int n, temp;
 	
-	int nn_match[NUM_NN+1], num_matched, num_nn, max_matched = 0;
+	int num_nn, max_matched = 0;
 
 	int nn_offset_edge[NUM_NN+1];
 	int *nn_offset;
 
-	int max_matches, max_grain, matches;
-	Grain *new_g, *g, *grain;
+	Grain *grain;
 
 	class GrainList *list;
 	int list_end_i;
@@ -134,13 +133,10 @@ int Dataset::dilate_grains()
 */
 int Dataset::filter_grains(int critical_volume)
 {
-	Point *d, *nn[NUM_NN+1];
-	int i,j,k, tm, unassigned; 
+	Point *d;
+	int i,j, unassigned; 
 	
-	int nn_match[NUM_NN+1], num_matched, num_nn, max_matched = 0;
-
-	int nn_offset_edge[NUM_NN+1];
-	int *nn_offset;
+	int max_matched = 0;
 	
 	bool finished = false;
 	GrainList *list;
@@ -229,18 +225,14 @@ int Dataset::filter_grains(int critical_volume)
 */
 int Dataset::merge_grains(float min_angle)
 {
-	Point *d, *nn[NUM_NN+1];
-	int i,j,k, tm, unassigned; 
+	Point *d;
+	int i,j, unassigned; 
 	
-	int nn_match[NUM_NN+1], num_matched, num_nn, max_matched = 0;
-
-	int nn_offset_edge[NUM_NN+1];
-	int *nn_offset;
+	int max_matched = 0;
 	
 	bool finished = false;
 	GrainList *list;
-	Grain *g;
-	
+
 	bool *reassigned = NULL;
 	reassigned = (bool*) malloc( num_grains*sizeof(bool) );
 	if (reassigned == NULL) { return 0; }
@@ -249,7 +241,7 @@ int Dataset::merge_grains(float min_angle)
 		reassigned[i] = false;
 	}
 	
-	int max_matches, max_grain, matches, new_grain, old_grain;
+	int old_grain;
 	int merged = 1;
 	
 	// Keep cycling through the grains until no more can be merged
@@ -324,9 +316,9 @@ int Dataset::merge_grains(float min_angle)
 int Dataset::replace_slice(int slice)
 {
 	Point *d, *d0, *nn[NUM_NN+1];
-	int i,j,k, tm, assigned = 0; 
+	int i,j,k, assigned = 0; 
 	
-	int nn_match[NUM_NN+1], num_matched, num_nn, max_matched = 0;
+	int nn_match[NUM_NN+1], num_matched = 0, num_nn, max_matched = 0;
 
 	int nn_offset_edge[NUM_NN+1];
 	int *nn_offset;
