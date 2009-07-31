@@ -1,4 +1,4 @@
-#include "interface.h"
+#include "dialogs.h"
 
 // File Info Dialog
 //---------------------------------------------

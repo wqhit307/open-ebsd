@@ -5,8 +5,8 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef __wxebsd__
-#define __wxebsd__
+#ifndef __wxEBSD__
+#define __wxEBSD__
 
 #include <wx/statusbr.h>
 #include <wx/gdicmn.h>
@@ -248,4 +248,4 @@ class alignmentFrameUI : public wxFrame
 	
 };
 
-#endif //__wxebsd__
+#endif //__wxEBSD__

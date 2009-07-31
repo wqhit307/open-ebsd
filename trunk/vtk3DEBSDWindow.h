@@ -1,6 +1,7 @@
-#ifndef _EBSDH
-#include "../ebsd.h"
-#endif
+#ifndef _VTK3DEBSDWINDOW_
+#define _VTK3DEBSDWINDOW_
+
+#include "ebsd.h"
 
 #include "vtkRenderWindow.h"
 #include "vtkCamera.h"
@@ -45,4 +46,7 @@ public:
     void RefreshData();
 
     vtk3DEBSDWindow( wxWindow* parent, wxWindowID id );
+	~vtk3DEBSDWindow();
 };
+
+#endif

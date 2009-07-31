@@ -1,7 +1,9 @@
-#include "interface.h"
-#ifndef _EBSDH
-#include "../ebsd.h"
-#endif
+#include "alignmentFrame.h"
+#include "vtkFrame.h"
+#include "dialogs.h"
+
+#include "ebsd.h"
+
 
 alignmentFrame::alignmentFrame( wxWindow* parent, Dataset* dataset ) : alignmentFrameUI( parent, -1 )
 {
@@ -75,7 +77,7 @@ void alignmentFrame::Init( wxActivateEvent& event )
 	if (!init) {
 		int tz = ds->dims[Z];
 	
-		printf("...%i\n",tz);
+		//printf("...%i\n",tz);
 	
 		wxArrayString suspiciousSlices;
 		wxString buff;
@@ -102,5 +104,7 @@ void alignmentFrame::Init( wxActivateEvent& event )
 		
 	}
 	init = true;
-	printf("Activate\n");
+	//printf("Activate\n");
+
+	event.Skip();
 }

@@ -4,7 +4,7 @@ if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
 
-PROJECT(EBSD)
+PROJECT(OpenEBSD)
 
 INCLUDE(FindPkgConfig)
 
@@ -47,17 +47,14 @@ ENDIF(WIN32)
 
 FIND_PACKAGE(wxWidgets COMPONENTS base core adv ${WXGLCANVASLIBS})
 
-# wxWidgets include directory
-include_directories(${wxWidgets_INCLUDE_DIRS})
- 
-# add wxWidgets definitions
-add_definitions(${wxWidgets_DEFINITIONS})
 
-
-#IF(wxWidgets_FOUND)
-	INCLUDE( ${wxWidgets_USE_FILE} )
+IF(wxWidgets_FOUND)
+	INCLUDE_DIRECTORIES(${wxWidgets_INCLUDE_DIRS})
+	ADD_DEFINITIONS(${wxWidgets_DEFINITIONS})
+	INCLUDE(${wxWidgets_USE_FILE})
 	LINK_LIBRARIES(${wxWidgets_LIBRARIES})
-#ENDIF(wxWidgets_FOUND)
+	LINK_DIRECTORIES(${wxWidgets_LIB_DIR})
+ENDIF(wxWidgets_FOUND)
 
 
 
@@ -65,8 +62,6 @@ add_definitions(${wxWidgets_DEFINITIONS})
 # Include VTK
 #------------------------------------------#
 
-#INCLUDE (${CMAKE_ROOT}/Modules/FindVTK.cmake)
-#FIND_PACKAGE(VTK)
 IF (USE_VTK_FILE)
   INCLUDE(${USE_VTK_FILE})
 ENDIF (USE_VTK_FILE)
@@ -76,7 +71,7 @@ vtkCommon
 vtkGraphics
 vtkIO
 vtkRendering
-#vtkCommonPythonD
+
 vtkFiltering
 vtkWidgets
 )
@@ -86,68 +81,14 @@ vtkWidgets
 #------------------------------------------#
 
 ADD_SUBDIRECTORY(newmat10)
-
-#INCLUDE_DIRECTORIES(vtkgtk)
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/newmat10)
-#INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/prob)
-
 LINK_LIBRARIES(newmat) 
-#LINK_LIBRARIES(prob) 
 
-
-# Include Python and NumPy
-#------------------------------------------#
-#INCLUDE(FindPythonLibs)
-#INCLUDE(FindPythonInterp)
-
-
-# Make Python Extention
-#------------------------------------------#
-#IF(PYTHON_LIBRARIES) 
-
-#INCLUDE("CMake/FindNumpy.cmake")
-
-#INCLUDE_DIRECTORIES(${PYTHON_NUMARRAY_INCLUDE_DIR})
-#INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
-
-#INCLUDE_DIRECTORIES(${PYTHON_LIBRARIES})
-#INCLUDE_DIRECTORIES(${PYTHON_NUMARRAY_INCLUDE_DIR})
-
-#ADD_LIBRARY(ebsd MODULE 
-#				 pymod.cpp
-#				 pymod.h
-#				 ebsd.h
-#				 symmetry.h
-#				 visualisation.h
-#				 characterisation.cpp
-#				 alignment.cpp
-#				 visualisation.cpp
-#				 processing.cpp
-#				 file_access.cpp
-#				 segmentation.cpp
-#				 orientation.cpp
-#				 boundaries.cpp
-#				 dataset.cpp
-#				 prob.C
-#				 prob.H)
-
-#SET_TARGET_PROPERTIES(ebsd PROPERTIES
-#			   PREFIX ""
-#			   COMPILE_FLAGS -DPYTHON_BINDINGS)
-#
-#TARGET_LINK_LIBRARIES(ebsd python2.5)
-
-#INSTALL(DIRECTORY python 
-#		DESTINATION ${CMAKE_BINARY_DIR}
-#		PATTERN ".*" EXCLUDE)
-#
-#ENDIF(PYTHON_LIBRARIES) 
 
 
 # Make standalone executable
 #------------------------------------------#
-ADD_EXECUTABLE(p 		 ebsd.cpp
+ADD_EXECUTABLE(OpenEBSD		 ebsd.cpp
 				 ebsd.h
 				 symmetry.h
 				 visualisation.h
@@ -165,34 +106,30 @@ ADD_EXECUTABLE(p 		 ebsd.cpp
 				 prob.H
 
 				 
-				 wxInterface/wxVTKRenderWindowInteractor.cpp
-				 wxInterface/wxVTKRenderWindowInteractor.h
+				 wxVTKRenderWindowInteractor.cpp
+				 wxVTKRenderWindowInteractor.h
 				 
-				 wxInterface/interface.h
-				 wxInterface/interface.cpp
-					
-				 wxInterface/dialogs.cpp
-				 wxInterface/alignmentFrame.cpp
-				
-				 wxInterface/vtk3DEBSDWindow.cpp
-				 wxInterface/vtk2DEBSDWindow.cpp
-				 
-				 wxInterface/wxebsd.cpp
-				 wxInterface/wxebsd.h
+				 dialogs.cpp
+				 dialogs.h
 
-				 wxInterface/vtkFrame.cpp
+				 alignmentFrame.cpp
+				 alignmentFrame.h
+				
+				 vtk3DEBSDWindow.h
+				 vtk2DEBSDWindow.h
+				 vtk3DEBSDWindow.cpp
+				 vtk2DEBSDWindow.cpp
+				 
+				 wxEBSD.cpp
+				 wxEBSD.h
+
+				 vtkFrame.h
+				 vtkFrame.cpp
 				 )
 
-#TARGET_LINK_LIBRARIES(p gtkglext-1.0)
-
-#SET_TARGET_PROPERTIES(p PROPERTIES
-#			COMPILE_FLAGS -fopenmp)	
-
-MESSAGE("${wxWidgets_DEFINITIONS}")
-
-SET_TARGET_PROPERTIES(p PROPERTIES
-			COMPILE_FLAGS "${wxWidgets_CXX_FLAGS} ${wxWidgets_DEFINITIONS}"
-			LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+SET_TARGET_PROPERTIES(OpenEBSD PROPERTIES
+			       COMPILE_FLAGS "${wxWidgets_CXX_FLAGS} ${wxWidgets_DEFINITIONS}"
+			       LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 
 
 # Make Documentation

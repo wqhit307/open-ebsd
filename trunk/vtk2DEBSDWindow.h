@@ -1,6 +1,7 @@
-#ifndef _EBSDH
-#include "../ebsd.h"
-#endif
+#ifndef _VTK2DEBSDWINDOW_
+#define _VTK2DEBSDWINDOW_
+
+#include "ebsd.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
@@ -11,6 +12,7 @@
 #endif
 
 #include "wx/dcbuffer.h"
+#include "wx/rawbmp.h"
 
 class vtk2DEBSDWindow : public wxPanel
 {
@@ -27,6 +29,7 @@ public:
 	vtk2DEBSDWindow(wxWindow *window, Dataset* dataset = NULL);
 	void SetDataset(Dataset* dataset);
 	void SetSlice(int s);	
-	
-	
+		
 };
+
+#endif

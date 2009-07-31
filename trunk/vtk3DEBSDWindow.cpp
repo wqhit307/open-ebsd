@@ -1,8 +1,8 @@
-#include "interface.h"
+#include "vtkFrame.h"
+#include <vtkInteractorStyleSwitch.h>
 
 vtk3DEBSDWindow::vtk3DEBSDWindow( wxWindow* parent, wxWindowID id ) : wxVTKRenderWindowInteractor( parent, id )
 {
-	//m_pVTKWindow = new wxVTKRenderWindowInteractor(this, -1);
     UseCaptureMouseOn();
 
   	pRenderer = vtkOpenGLRenderer::New();
@@ -16,6 +16,12 @@ vtk3DEBSDWindow::vtk3DEBSDWindow( wxWindow* parent, wxWindowID id ) : wxVTKRende
 	  	slice[i] = 0;
 	}	
   	
+	// Enter trackball mode
+	vtkInteractorStyleSwitch* interactorStyle = vtkInteractorStyleSwitch::New();
+	interactorStyle->SetCurrentStyleToTrackballCamera();
+	this->SetInteractorStyle(interactorStyle);
+	interactorStyle->Delete();
+
   	// connect renderer and render window and configure render window
   	GetRenderWindow()->AddRenderer(pRenderer);
   	pRenderer->SetBackground(0.7,0.7,0.7);
@@ -23,6 +29,11 @@ vtk3DEBSDWindow::vtk3DEBSDWindow( wxWindow* parent, wxWindowID id ) : wxVTKRende
   	ds = 0;
   	init = false;
 	
+}
+
+vtk3DEBSDWindow::~vtk3DEBSDWindow()
+{
+	DestroyVTK();
 }
 
 void vtk3DEBSDWindow::SetDataset( Dataset* dataset )
@@ -84,13 +95,6 @@ void vtk3DEBSDWindow::ConfigureSlices()
 	if (ds>0 && ds->init) {
 		
 		for(int i=X; i<=Z; i++){
-
-	//		if (init) {
-	//			pPlane[i]->Delete();
-	//			pActor[i]->Delete();
-	//		}
-
-
 			pPlane[i]->SetInput(pFilter[i]->GetOutput());
 			pActor[i]->SetMapper(pPlane[i]);
 			pRenderer->AddActor(pActor[i]);
@@ -106,6 +110,13 @@ void vtk3DEBSDWindow::ConfigureSlices()
 
 void vtk3DEBSDWindow::DestroyVTK()
 {
-//http://www.vtk.org/pipermail/vtkusers/2003-September/019894.html
+/*
+for(int i=X; i<=Z; i++)
+	{
+		pPlane[i]->Delete();
+		pActor[i]->Delete();
+	}
 
+	pRenderer->Delete();
+*/
 }
