@@ -31,6 +31,9 @@ Follow these instructions to use TortoiseSVN obtain a copy of the source code fr
   # Create two new folders OpenEBSDCode and OpenEBSDBuild in a folder of your choice, say C:\Development
   # Right-click on OpenEBSDCode and select 'SVN Checkout...'
   # Under URL enter 'http://open-ebsd.googlecode.com/svn/trunk/' and click OK
+
+= Compile OpenEBSD =
+
   # Open CMake from the start menu
   # Choose the source code directory and build directory respectively 
   # Click configure twice
