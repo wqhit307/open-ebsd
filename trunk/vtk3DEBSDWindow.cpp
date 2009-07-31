@@ -28,6 +28,7 @@ vtk3DEBSDWindow::vtk3DEBSDWindow( wxWindow* parent, wxWindowID id ) : wxVTKRende
   	
   	ds = 0;
   	init = false;
+	mode = MODE_EULER;
 	
 }
 
@@ -42,10 +43,17 @@ void vtk3DEBSDWindow::SetDataset( Dataset* dataset )
 	RefreshData();	
 }
 
+void vtk3DEBSDWindow::SetMode(int mode)
+{
+	this->mode = mode;
+
+	RefreshData();
+}
+
 void vtk3DEBSDWindow::RefreshData()
 {
 	if (ds->init) {
-		pDataPoints = (vtkStructuredPoints*)ds->vtk_3d_dataset(0);
+		pDataPoints = (vtkStructuredPoints*)ds->vtk_3d_dataset(mode);
 		
 		pFilter[X]->SetInput(pDataPoints); 
 		pFilter[Y]->SetInput(pDataPoints); 
@@ -85,7 +93,6 @@ int *extent_buffer, extent[6];
 		}
 		
 		pRenderer->Render();
-	
 	}
 }
 
@@ -104,6 +111,8 @@ void vtk3DEBSDWindow::ConfigureSlices()
 		init = true;
 		
 		pRenderer->Render();
+
+		Refresh();
 		
 	}
 }

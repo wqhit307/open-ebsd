@@ -30,6 +30,8 @@ private:
 	
 	int slice[3];
 	bool init;
+
+	int mode;
 	
 	Dataset *ds;
 	
@@ -43,6 +45,7 @@ public:
     void SetDataset( Dataset* dataset );
    	void DisplaySlices();
    	void SetSlices( int x, int y, int z );
+	void SetMode(int mode);
     void RefreshData();
 
     vtk3DEBSDWindow( wxWindow* parent, wxWindowID id );

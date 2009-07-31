@@ -2,10 +2,7 @@
 #include "alignmentFrame.h"
 
 vtkFrame::vtkFrame( Dataset **dataset ) : vtkFrameUI( (wxFrame *)NULL, VTK_FRAME, _T("OpenEBSD"), wxPoint(50,50), wxSize(450,340) )
-{
-	//ConstructVTK();
-	//vtkRenderWindow->ConfigureVTK();
-	
+{	
 	grainProp->Show(false);	
 	ds = dataset;
 }
@@ -57,6 +54,25 @@ void vtkFrame::UpdateMenuItems()
 	}
 }
 
+void vtkFrame::OnChangeVisualisation( wxCommandEvent& event )
+{
+	int mode;
+
+	if (visualisationMode->GetCurrentSelection() == 0 && colourMode->GetCurrentSelection() == 0)
+		mode = MODE_EULER;
+
+	if (visualisationMode->GetCurrentSelection() == 0 && colourMode->GetCurrentSelection() == 1)
+		mode = MODE_AVG_EULER;
+	
+	if (visualisationMode->GetCurrentSelection() == 1 && colourMode->GetCurrentSelection() == 0)
+		mode = MODE_RF;
+
+	if (visualisationMode->GetCurrentSelection() == 1 && colourMode->GetCurrentSelection() == 1)
+		mode = MODE_AVG_RF;
+
+	vtkRenderWindow->SetMode(mode);
+}
+
 void vtkFrame::SliceAlignment( wxCommandEvent& event )
 {
 	alignmentFrame* alignment = new alignmentFrame(this,*ds);
@@ -88,6 +104,21 @@ void vtkFrame::OpenCSVFile(wxCommandEvent& event)
         	UpdateMenuItems();
         }
 			
+	}
+	
+}
+
+void vtkFrame::ExportStatistics( wxCommandEvent& event )
+{
+
+	wxFileDialog dialog(this, _T("Export Statistics to..."),
+							  _T(""),_T(""),_T("CSV File (*.csv)|*.csv"),
+							  wxFD_SAVE);
+
+	if (dialog.ShowModal() == wxID_OK)
+ 	{  
+		(*ds)->write_csv((const char*)dialog.GetPath().mb_str(wxConvUTF8));
+		
 	}
 	
 }

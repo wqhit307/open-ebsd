@@ -33,7 +33,9 @@ protected:
 	void OpenCSVFile( wxCommandEvent& event );
 	void SaveRawFile( wxCommandEvent& event );
 	void SliceAlignment( wxCommandEvent& event );
-	
+	void ExportStatistics( wxCommandEvent& event );
+
+
 	void Segment( wxCommandEvent& event );
 	void Filter( wxCommandEvent& event );
 	void Dilate( wxCommandEvent& event );
@@ -43,6 +45,8 @@ protected:
 	void xHideButton( wxCommandEvent& event );
 	
 	void UpdateSlider( wxScrollEvent& event );
+	void OnChangeVisualisation( wxCommandEvent& event );
+
 	
 	void UpdateMenuItems();
 	void UpdateSlider( bool setCentre = FALSE );
@@ -51,6 +55,7 @@ protected:
 private:
 
 	Dataset **ds;
+	int mode;
 
 public:
 	
