@@ -18,6 +18,8 @@ The Visualisation Toolkit is used for visualisation. Since we need the header fi
 wxWidgets is required for the user interface. A windows installer is available from http://www.wxwidgets.org/downloads/ (choose wxMSW). After installation you must build wxWidgets:
 
   # Navigate to C:\wxWidgets-2.8.10\build\msw (or wherever you installed wxWidgets). Open wx.dsw which will open Visual C++
+  # In Solution Explorer, open core>Setup>setup.h (there are two setup.h files; choose the one with 'wx/msw/setup.h' in the first line)
+  # Search for 'wxUSE_GLCANVAS', and change '#DEFINE wxUSE_GLCANVAS 0' to '#DEFINE wxUSE_GLCANVAS 0'
   # Under Build>Configuration Manager, select 'Debug' 
   # Select Build>Build Solution
   # Under Build>Configuration Manager, select 'Release'
