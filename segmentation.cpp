@@ -9,7 +9,8 @@
 #define pop()			stack[--stack_top]
 
 #define gl_add(i)		grain_list_free->index = i; \
-						grain_list_free->next = ++(grain_list_free)
+						grain_list_free->next = grain_list_free+1; \
+						grain_list_free++
 	
 #define CRIT_DIFF		14
 
@@ -297,7 +298,7 @@ int Dataset::reconstruct_grains()
 int Dataset::adjacency_list()
 {
 	int grain;
-	int pc = num_grains / 50;
+	int pc = num_grains / 50 + 1;
 
 	Point *d, *nn;
 	int i, j, k, l, 
@@ -383,8 +384,8 @@ int Dataset::adjacency_list()
 				g->num_adj_grains = 0;
 			}
 		}
-		if (grain%pc == 0){
-			progress_callback((float)(grain+1)/num_grains,"Calculating adjacency list", false);
+		if (i%pc == 0){
+			progress_callback((float)(i+1)/num_grains,"Calculating adjacency list", false);
 		}
 	}
 	

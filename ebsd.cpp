@@ -3,7 +3,7 @@
 	\brief	Example data processing session 
 */
 
-#include "wxInterface/interface.h"
+#include "vtkFrame.h"
 
 class MyApp : public wxApp
 {

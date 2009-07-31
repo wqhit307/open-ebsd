@@ -1,4 +1,5 @@
-#include "interface.h"
+#include "vtkFrame.h"
+#include "alignmentFrame.h"
 
 vtkFrame::vtkFrame( Dataset **dataset ) : vtkFrameUI( (wxFrame *)NULL, VTK_FRAME, _T("OpenEBSD"), wxPoint(50,50), wxSize(450,340) )
 {
@@ -26,7 +27,7 @@ void vtkFrame::SaveRawFile(wxCommandEvent& event)
 {
 
 	wxFileDialog dialog(this, _T("Save RAW file as..."),
-							  _T(""),_T(""),_T("EBSD Raw files (*.ebsd)|*.ebsd|"),
+							  _T(""),_T(""),_T("EBSD Raw files (*.ebsd)|*.ebsd"),
 							  wxFD_SAVE);
 
 	if (dialog.ShowModal() == wxID_OK)
@@ -95,7 +96,7 @@ void vtkFrame::OpenRawFile(wxCommandEvent& event)
 {
 
 	wxFileDialog dialog(this, _T("Choose a RAW file to open"),
-							  _T(""),_T(""),_T("EBSD Raw files (*.ebsd)|*.ebsd|"),
+							  _T(""),_T(""),_T("EBSD Raw files (*.ebsd)|*.ebsd"),
 							  wxFD_OPEN || wxFD_FILE_MUST_EXIST);
 
 	if (dialog.ShowModal() == wxID_OK)
