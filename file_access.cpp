@@ -1,3 +1,4 @@
+
 /**	\file 	file_access.cpp
 	\brief	Handles all file input/output
 	
@@ -160,9 +161,21 @@ int Dataset::write_csv(const char name[])
 	
 	float *e;
 	float dV = steps[X]*steps[Y]*steps[Z];
+
+	char base_name[2000];
+
+	int name_len = strlen(name);
+
+	strncpy(base_name,name,name_len-4);
+	base_name[name_len-4] = 0;
+
+	char out_name[2000];
+
+	strcpy(out_name,base_name);
+	strcat(out_name,"-statistics.csv");
 	
-	if (name!=NULL && (fo = fopen("ex-1.csv","w")) != NULL) {
-		fprintf(fo,"Grain Number,Edge,Points,Volume,Surface Area,Adjacent Grains,phi1,PHI,phi2,a,b,c,ba,ca,c_x,c_y,c_z\n");
+	if (name!=NULL && (fo = fopen(out_name,"w")) != NULL) {
+		fprintf(fo,"GrainNumber,OnEdge,VolumeVoxels,Volume,SurfaceArea,NumAdjacentGrains,Euler_phi1,Euler_PHI,Euler_phi2,Axis_a,Axis_b,Axis_c,Axis_b/Axis_a,Axis_c/Axis_a,Centroid_x,Centroid_y,Centroid_z\n");
 		
 		for(i=0;i<num_grains;i++){		
 				
@@ -193,12 +206,22 @@ int Dataset::write_csv(const char name[])
 		return 0;
 	}
 		
-	if (name!=NULL && (fo = fopen("ex-2.csv","w")) != NULL) {
+	strcpy(out_name,base_name);
+	strcat(out_name,"-disorientation.csv");
+
+	if (name!=NULL && (fo = fopen(out_name,"w")) != NULL) {
+		
+		fprintf(fo,"Grain1,Grain2,Disorientation\n");
+		
 		for(i=0;i<num_grains;i++){
 		for(j=0;j<grains[i].num_adj_grains;j++){	
 								
-			fprintf(fo,"%f\n",
-					  grains[i].adj_grains[j].disorientation);
+			if(grains[i].adj_grains[j].grain > i)
+			{	
+				fprintf(fo,"%i,%i,%f\n",i,
+										grains[i].adj_grains[j].grain,
+										grains[i].adj_grains[j].disorientation);
+			}
 		}}
 		
 		fclose(fo);

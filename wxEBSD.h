@@ -5,8 +5,8 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#ifndef __wxEBSD__
-#define __wxEBSD__
+#ifndef __wxebsd__
+#define __wxebsd__
 
 #include <wx/statusbr.h>
 #include <wx/gdicmn.h>
@@ -92,11 +92,13 @@ class vtkFrameUI : public wxFrame
 		virtual void OpenCSVFile( wxCommandEvent& event ){ event.Skip(); }
 		virtual void OpenRawFile( wxCommandEvent& event ){ event.Skip(); }
 		virtual void SaveRawFile( wxCommandEvent& event ){ event.Skip(); }
+		virtual void ExportStatistics( wxCommandEvent& event ){ event.Skip(); }
 		virtual void SliceAlignment( wxCommandEvent& event ){ event.Skip(); }
 		virtual void Segment( wxCommandEvent& event ){ event.Skip(); }
 		virtual void Dilate( wxCommandEvent& event ){ event.Skip(); }
 		virtual void Filter( wxCommandEvent& event ){ event.Skip(); }
 		virtual void CalculateExtraStats( wxCommandEvent& event ){ event.Skip(); }
+		virtual void OnChangeVisualisation( wxCommandEvent& event ){ event.Skip(); }
 		virtual void UpdateSlider( wxScrollEvent& event ){ event.Skip(); }
 		
 	
@@ -248,4 +250,4 @@ class alignmentFrameUI : public wxFrame
 	
 };
 
-#endif //__wxEBSD__
+#endif //__wxebsd__

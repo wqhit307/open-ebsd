@@ -5,13 +5,13 @@
 // PLEASE DO "NOT" EDIT THIS FILE!
 ///////////////////////////////////////////////////////////////////////////
 
-#include "wxEBSD.h"
+#include "wxebsd.h"
 
 ///////////////////////////////////////////////////////////////////////////
 
 vtkFrameUI::vtkFrameUI( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 600,400 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( 800,600 ), wxDefaultSize );
 	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
 	m_statusBar1 = this->CreateStatusBar( 1, wxST_SIZEGRIP, wxID_ANY );
@@ -225,11 +225,14 @@ vtkFrameUI::vtkFrameUI( wxWindow* parent, wxWindowID id, const wxString& title, 
 	this->Connect( openCSVMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::OpenCSVFile ) );
 	this->Connect( openRawMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::OpenRawFile ) );
 	this->Connect( saveRawMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::SaveRawFile ) );
+	this->Connect( exportStatsMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::ExportStatistics ) );
 	this->Connect( sliceAlignmentMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::SliceAlignment ) );
 	this->Connect( segmentMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::Segment ) );
 	this->Connect( dilateMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::Dilate ) );
 	this->Connect( filterMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::Filter ) );
 	this->Connect( calculateExtraStatsMenu->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::CalculateExtraStats ) );
+	visualisationMode->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( vtkFrameUI::OnChangeVisualisation ), NULL, this );
+	colourMode->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( vtkFrameUI::OnChangeVisualisation ), NULL, this );
 	xSlider->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( vtkFrameUI::UpdateSlider ), NULL, this );
 	xSlider->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( vtkFrameUI::UpdateSlider ), NULL, this );
 	xSlider->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( vtkFrameUI::UpdateSlider ), NULL, this );
@@ -265,11 +268,14 @@ vtkFrameUI::~vtkFrameUI()
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::OpenCSVFile ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::OpenRawFile ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::SaveRawFile ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::ExportStatistics ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::SliceAlignment ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::Segment ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::Dilate ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::Filter ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( vtkFrameUI::CalculateExtraStats ) );
+	visualisationMode->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( vtkFrameUI::OnChangeVisualisation ), NULL, this );
+	colourMode->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( vtkFrameUI::OnChangeVisualisation ), NULL, this );
 	xSlider->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( vtkFrameUI::UpdateSlider ), NULL, this );
 	xSlider->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( vtkFrameUI::UpdateSlider ), NULL, this );
 	xSlider->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( vtkFrameUI::UpdateSlider ), NULL, this );
