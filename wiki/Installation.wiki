@@ -17,11 +17,11 @@ The Visualisation Toolkit is used for visualisation. Since we need the header fi
 == wxWidgets ==
 wxWidgets is required for the user interface. A windows installer is available from http://www.wxwidgets.org/downloads/ (choose wxMSW). After installation you must build wxWidgets:
 
-  # Navigate to C:\wxWidgets-2.8.10\build\msw (or wherever you installed wxWidgets). Open wx.dsw which will open Visual C++. 
-  # Under Build>Configuration Manager, select 'Debug'. 
-  # Select Build>Build Solution.
-  # Under Build>Configuration Manager, select 'Release'. 
-  # Select Build>Build Solution.
+  # Navigate to C:\wxWidgets-2.8.10\build\msw (or wherever you installed wxWidgets). Open wx.dsw which will open Visual C++
+  # Under Build>Configuration Manager, select 'Debug' 
+  # Select Build>Build Solution
+  # Under Build>Configuration Manager, select 'Release'
+  # Select Build>Build Solution
 
 Do not build any other of the configurations, as they can interfere with one another. 
 
@@ -30,4 +30,12 @@ Follow these instructions to use TortoiseSVN obtain a copy of the source code fr
 
   # Create two new folders OpenEBSDCode and OpenEBSDBuild in a folder of your choice, say C:\Development
   # Right-click on OpenEBSDCode and select 'SVN Checkout...'
-  #
+  # Under URL enter 'http://open-ebsd.googlecode.com/svn/trunk/' and click OK
+  # Open CMake from the start menu
+  # Choose the source code directory and build directory respectively 
+  # Click configure twice
+  # Click generate
+  # Open the newly created Visual Studio project 'EBSD.sln' in OpenEBSDBuild
+  # Under Build>Configuration Manager, select 'Release'
+  # Select Build>Build Solution
+  # A binary executable should be created in 'OpenEBSDBuild\Release' 
