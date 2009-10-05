@@ -88,7 +88,8 @@ LINK_LIBRARIES(newmat)
 
 # Make standalone executable
 #------------------------------------------#
-ADD_EXECUTABLE(OpenEBSD		 ebsd.cpp
+ADD_EXECUTABLE(OpenEBSD		 
+				 ebsd.cpp
 				 ebsd.h
 				 symmetry.h
 				 visualisation.h
@@ -102,8 +103,8 @@ ADD_EXECUTABLE(OpenEBSD		 ebsd.cpp
 				 orientation.cpp
 				 boundaries.cpp
 				 dataset.cpp
-				 prob.C
-				 prob.H
+				 prob.c
+				 prob.h
 
 				 
 				 wxVTKRenderWindowInteractor.cpp
@@ -126,6 +127,13 @@ ADD_EXECUTABLE(OpenEBSD		 ebsd.cpp
 				 vtkFrame.h
 				 vtkFrame.cpp
 				 )
+
+SET(CMAKE_CXX_FLAGS_DEBUG
+      "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+      
+SET(CMAKE_CXX_FLAGS_RELEASE
+      "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+
 
 SET_TARGET_PROPERTIES(OpenEBSD PROPERTIES
 			       COMPILE_FLAGS "${wxWidgets_CXX_FLAGS} ${wxWidgets_DEFINITIONS}"
